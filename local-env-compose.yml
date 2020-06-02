@@ -3,7 +3,7 @@ version: '3.4'
 services:
   afshin-local-stack:
     container_name: afshin-local-stack-container-light
-    image: localstack/localstack-light
+    image: afshin-local-stack
     ports:
       - "4566-4599:4566-4599"
       - "8000-8080:8000-8080"
