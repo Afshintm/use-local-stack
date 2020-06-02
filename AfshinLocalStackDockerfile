@@ -1,0 +1,3 @@
+FROM localstack/localstack-light:latest
+
+ENTRYPOINT ["localstack","start"]

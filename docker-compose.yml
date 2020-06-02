@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  afshin-local-stack:
+    image: afshin-local-stack
+    build:
+      context: .
+      dockerfile: AfshinLocalStackDockerfile
+
+  afshin-aws-cli:
+    image: afshin-aws-cli
+    build:
+      context: .
+      dockerfile: AwsCliDockerfile

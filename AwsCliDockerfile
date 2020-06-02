@@ -1,0 +1,17 @@
+FROM python:alpine
+
+RUN pip install --no-cache-dir awscli
+
+ARG access_id=1234
+ARG access_key=1234
+
+ENV AWS_ACCESS_KEY_ID=$access_id
+ENV AWS_SECRET_ACCESS_KEY=$access_key
+ENV AWS_DEFAULT_REGION=ap-southeast-2
+
+WORKDIR /scripts
+COPY /tools/docker/. /scripts
+RUN chmod +x /scripts/aws-cli-attributes.json
+RUN chmod +x /scripts/aws-cli-entry.sh
+
+ENTRYPOINT  [ "sh", "/scripts/aws-cli-entry.sh" ]
