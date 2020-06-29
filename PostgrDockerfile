@@ -1,0 +1,7 @@
+FROM clkao/postgres-plv8:9.6
+
+RUN cat > docker-entrypoint-initdb.d/activatePlv8.sql
+RUN echo 'create extension plv8' >> docker-entrypoint-initdb.d/activatePlv8.sql
+
+
+

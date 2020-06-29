@@ -1,7 +1,0 @@
-version: '3.4'
-services: 
-  afshin-local-stack:
-    image: afshin-local-stack
-    build:
-      context: .
-      dockerfile: AfshinLocalStackDockerfile

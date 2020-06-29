@@ -1,3 +1,0 @@
-FROM localstack/localstack:latest
-
-ENTRYPOINT ["localstack","start"]
