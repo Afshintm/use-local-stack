@@ -11,3 +11,11 @@ services:
     build:
       context: .
       dockerfile: AwsCliDockerfile
+
+  postgre-sql:
+    image: postgre-sql
+    build:
+      context: .
+      dockerfile: PostgrDockerfile
+    ports:
+        - "5432:5432"
