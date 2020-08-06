@@ -42,6 +42,7 @@ services:
     tty: true
 
   pgadmin:
+    container_name: pgadmin
     image: dpage/pgadmin4
     ports:
       - "5431:80"
