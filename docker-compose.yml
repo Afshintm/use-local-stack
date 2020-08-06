@@ -1,13 +1,13 @@
-version: '3.4'
+version: "3.4"
 services:
-  afshin-local-stack:
-    image: afshin-local-stack
+  local-stack:
+    image: local-stack
     build:
       context: .
-      dockerfile: AfshinLocalStackDockerfile
+      dockerfile: LocalStackDockerfile
 
-  afshin-aws-cli:
-    image: afshin-aws-cli
+  aws-cli:
+    image: aws-cli
     build:
       context: .
       dockerfile: AwsCliDockerfile
@@ -18,4 +18,4 @@ services:
       context: .
       dockerfile: PostgrDockerfile
     ports:
-        - "5432:5432"
+      - "5432:5432"

@@ -1,30 +1,46 @@
-version: '3.4'
+version: "3.4"
 
 services:
-  afshin-local-stack:
-    container_name: afshin-local-stack-container-light
-    image: afshin-local-stack
+  postgre-sql:
+    container_name: postgre-sql
+    image: postgre-sql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "password"
+    command: postgres -c 'max_connections=200' -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.max=10000 -c pg_stat_statements.track=all
+    # volumes:
+    #   - ./tests/Sql/InitialFormsReleaseVersion.sql:/docker-entrypoint-initdb.d/InitialFormsReleaseVersion.sql
+    depends_on:
+      - local-stack
+      - pgadmin
+      - aws-cli
+
+  local-stack:
+    container_name: local-stack
+    image: local-stack
     ports:
       - "4566-4599:4566-4599"
-      - "8000-8080:8000-8080"
+      # - "8000-8080:8000-8080"
     environment:
       AWS_ACCESS_KEY_ID: "1234"
       AWS_SECRET_ACCESS_KEY: "1234"
       AWS_DEFAULT_REGION: "ap-southeast-2"
       SERVICES: "sqs,sns,s3"
-      HOSTNAME: "at-local-stack"
-      HOSTNAME_EXTERNAL: "at-local-stack"
+      HOSTNAME: "local-stack"
+      HOSTNAME_EXTERNAL: "local-stack"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     tmpfs:
       - /tmp/localstack:exec,mode=600
 
   aws-cli:
-    image: afshin-aws-cli
+    container_name: aws-cli
+    image: aws-cli
     depends_on:
-      - afshin-local-stack
+      - local-stack
     tty: true
-    
+
   pgadmin:
     image: dpage/pgadmin4
     ports:

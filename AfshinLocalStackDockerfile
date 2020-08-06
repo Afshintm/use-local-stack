@@ -1,3 +1,0 @@
-FROM localstack/localstack-light:latest
-
-ENTRYPOINT ["docker-entrypoint.sh"]
